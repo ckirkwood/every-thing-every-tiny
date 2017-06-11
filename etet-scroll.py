@@ -27,6 +27,9 @@ delay = 0.02
 url = 'https://everythingeverytime.herokuapp.com/poem'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 15f3193b2ddb139518b54ceb577696ffb6386bf0
 def refreshPoem():
     httpreq = urllib2.urlopen(url)
     response = httpreq.read()
@@ -64,6 +67,7 @@ poem_line = refreshPoem()
 
 for i in range(10):
     print poem_line[i]
+<<<<<<< HEAD
 
 =======
 # Parse data for individual lines
@@ -71,6 +75,8 @@ httpreq = urllib2.urlopen(url)
 response = httpreq.read()
 poem = json.loads(response)
 poem_line = poem['poem']
+=======
+>>>>>>> 15f3193b2ddb139518b54ceb577696ffb6386bf0
 
 >>>>>>> ae4433b277d89c3a7a3280687df769dec1cb0dfb
 # Change the lines below to your own message
@@ -121,6 +127,10 @@ while True:
                 scrollphathd.scroll(-int(pos_x/pos_y), -1)
                 scrollphathd.show()
                 time.sleep(delay)
+<<<<<<< HEAD
+=======
+         # Clear the current lines, refresh data and print to console
+>>>>>>> 15f3193b2ddb139518b54ceb577696ffb6386bf0
             lines.clear()
             poem_line = refreshPoem()
             for i in range(10):
