@@ -18,7 +18,7 @@ scrollphathd.rotate(180)
 scrollphathd.set_brightness(0.2)
 
 # If rewind is True the scroll effect will rapidly rewind after the last line
-rewind = True
+rewind = False
 
 # Delay is the time (in seconds) between each pixel scrolled
 delay = 0.03
