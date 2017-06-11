@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+# Script is unchanged from Pimoroni's advancedscrolling.py example, apart from the data import/parsing.
+
 import time
 import scrollphathd
 import urllib2
@@ -20,13 +23,14 @@ rewind = True
 # Delay is the time (in seconds) between each pixel scrolled
 delay = 0.03
 
+# Add data source
 url = 'https://everythingeverytime.herokuapp.com/poem'
 
+# Parse data for individual lines
 httpreq = urllib2.urlopen(url)
 response = httpreq.read()
 poem = json.loads(response)
 poem_line = poem['poem']
-
 
 # Change the lines below to your own message
 lines = [poem_line[0],
