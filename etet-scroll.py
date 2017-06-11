@@ -23,7 +23,7 @@ rewind = False
 # Delay is the time (in seconds) between each pixel scrolled
 delay = 0.02
 
-# Add data source
+# Add a data source
 url = 'https://everythingeverytime.herokuapp.com/poem'
 
 def refreshPoem():
@@ -35,32 +35,7 @@ def refreshPoem():
 
 poem_line = refreshPoem()
 
-for i in range(10):
-    print poem_line[i]
-
-# Change the lines below to your own message
-lines = [poem_line[0],
-
-# Dial down the brightness
-scrollphathd.set_brightness(0.2)
-
-# If rewind is True the scroll effect will rapidly rewind after the last line
-rewind = True
-
-# Delay is the time (in seconds) between each pixel scrolled
-delay = 0.02
-
-url = 'https://everythingeverytime.herokuapp.com/poem'
-
-def refreshPoem():
-    httpreq = urllib2.urlopen(url)
-    response = httpreq.read()
-    poem = json.loads(response)
-    poem_line = poem['poem']
-    return poem_line
-
-poem_line = refreshPoem()
-
+# Print first poem to the console
 for i in range(10):
     print poem_line[i]
 
