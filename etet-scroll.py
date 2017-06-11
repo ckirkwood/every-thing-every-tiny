@@ -18,15 +18,47 @@ scrollphathd.set_brightness(0.2)
 rewind = True
 
 # Delay is the time (in seconds) between each pixel scrolled
-delay = 0.03
+delay = 0.02
 
 url = 'https://everythingeverytime.herokuapp.com/poem'
 
-httpreq = urllib2.urlopen(url)
-response = httpreq.read()
-poem = json.loads(response)
-poem_line = poem['poem']
+def refreshPoem():
+    httpreq = urllib2.urlopen(url)
+    response = httpreq.read()
+    poem = json.loads(response)
+    poem_line = poem['poem']
+    return poem_line
 
+poem_line = refreshPoem()
+
+for i in range(10):
+    print poem_line[i]
+
+# Change the lines below to your own message
+lines = [poem_line[0],
+
+# Dial down the brightness
+scrollphathd.set_brightness(0.2)
+
+# If rewind is True the scroll effect will rapidly rewind after the last line
+rewind = True
+
+# Delay is the time (in seconds) between each pixel scrolled
+delay = 0.02
+
+url = 'https://everythingeverytime.herokuapp.com/poem'
+
+def refreshPoem():
+    httpreq = urllib2.urlopen(url)
+    response = httpreq.read()
+    poem = json.loads(response)
+    poem_line = poem['poem']
+    return poem_line
+
+poem_line = refreshPoem()
+
+for i in range(10):
+    print poem_line[i]
 
 # Change the lines below to your own message
 lines = [poem_line[0],
@@ -47,17 +79,6 @@ line_height = scrollphathd.DISPLAY_HEIGHT + 2
 offset_left = 0
 
 # Draw each line in lines to the Scroll pHAT HD buffer
-# scrollphathd.write_string returns the length of the written string in pixels
-# we can use this length to calculate the offset of the next line
-# and will also use it later for the scrolling effect.
-lengths = [0] * len(lines)
-
-for line, text in enumerate(lines):
-    lengths[line] = scrollphathd.write_string(text, x=offset_left, y=line_height * line)
-    offset_left += lengths[line]
-
-# This adds a little bit of horizontal/vertical padding into the buffer at
-# the very bottom right of the last line to keep things wrapping nicely.
 scrollphathd.set_pixel(offset_left - 1, (len(lines) * line_height) - 1, 0)
 
 while True:
@@ -87,6 +108,10 @@ while True:
                 scrollphathd.scroll(-int(pos_x/pos_y), -1)
                 scrollphathd.show()
                 time.sleep(delay)
+            lines.clear()
+            poem_line = refreshPoem()
+            for i in range(10):
+                print poem_line[i]
 
         # Otherwise, progress to the next line by scrolling upwards
         else:
