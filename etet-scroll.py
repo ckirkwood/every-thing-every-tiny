@@ -91,6 +91,16 @@ while True:
          # Clear the current lines, refresh data and print to console
             lines.clear()
             poem_line = refreshPoem()
+            lines = [poem_line[0],
+                     poem_line[1],
+                     poem_line[2],
+                     poem_line[3],
+                     poem_line[4],
+                     poem_line[5],
+                     poem_line[6],
+                     poem_line[7],
+                     poem_line[8],
+                     poem_line[9]]
             for i in range(10):
                 print poem_line[i]
 
