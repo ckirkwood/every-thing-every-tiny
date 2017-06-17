@@ -6,6 +6,7 @@ import time
 import scrollphathd
 import urllib2
 import json
+from scrollphathd.fonts import font5x7
 
 print("""
 every thing every tiny
@@ -58,6 +59,16 @@ line_height = scrollphathd.DISPLAY_HEIGHT + 2
 offset_left = 0
 
 # Draw each line in lines to the Scroll pHAT HD buffer
+# scrollphathd.write_string returns the length of the written string in pixels
+# we can use this length to calculate the offset of the next line
+# and will also use it later for the scrolling effect.
+lengths = [0] * len(lines)
+
+for line, text in enumerate(lines):
+    lengths[line] = scrollphathd.write_string(text, x=offset_left, y=line_height * line, font=font5x7)
+    offset_left += lengths[line]
+
+# Draw each line in lines to the Scroll pHAT HD buffer
 scrollphathd.set_pixel(offset_left - 1, (len(lines) * line_height) - 1, 0)
 
 while True:
@@ -91,16 +102,6 @@ while True:
          # Clear the current lines, refresh data and print to console
             lines.clear()
             poem_line = refreshPoem()
-            lines = [poem_line[0],
-                     poem_line[1],
-                     poem_line[2],
-                     poem_line[3],
-                     poem_line[4],
-                     poem_line[5],
-                     poem_line[6],
-                     poem_line[7],
-                     poem_line[8],
-                     poem_line[9]]
             for i in range(10):
                 print poem_line[i]
 
